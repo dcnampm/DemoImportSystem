@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demoimportsystem.controllers.OrderListDetailsController">
+    <!-- Header -->
+    <VBox stylesheets="@../../../css/style.css">
+        <Label alignment="CENTER" prefHeight="20.0" prefWidth="900.0" text="DANH SÁCH CHI TIẾT MẶT HÀNG CẦN ĐẶT" textFill="#00e0e8">
+            <font>
+                <Font name="Segoe UI Black" size="17.0" />
+            </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+        </Label>
+
+        <!-- Table for "Danh sách mặt hàng" -->
+        <TableView fx:id="tableMerchandise" prefHeight="300.0" prefWidth="900.0" stylesheets="@../../../css/style.css" VBox.vgrow="NEVER">
+            <columns>
+                <TableColumn fx:id="columnMerchandiseCode" prefWidth="122.66667175292969" text="Mã mặt hàng" />
+                <TableColumn fx:id="columnMerchandiseName" prefWidth="237.3333282470703" text="Tên mặt hàng" />
+                <TableColumn fx:id="columnQuantity" prefWidth="141.33331298828125" text="Số lượng" />
+                <TableColumn fx:id="columnUnit" prefWidth="131.0" text="Đơn vị" />
+                <TableColumn fx:id="columnDate" prefWidth="268.0" text="Ngày nhận mong muốn" />
+            </columns>
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </TableView>
+
+
+        <Label fx:id="messageLabel" prefHeight="14.0" prefWidth="280.0" text="" textFill="RED" visible="false">
+            <font>
+                <Font name="System Italic" size="13.0" />
+            </font>
+            <VBox.margin>
+                <Insets left="10.0" top="10.0" />
+            </VBox.margin>
+        </Label>
+
+<!--        &lt;!&ndash; Label hiển thị khi không có đơn hàng &ndash;&gt;-->
+<!--        <Label fx:id="labelNoOrders" text="Đơn hàng chưa được tạo" textFill="RED" visible="false">-->
+<!--            <font>-->
+<!--                <Font name="System Italic" size="13.0" />-->
+<!--            </font>-->
+<!--         <VBox.margin>-->
+<!--            <Insets top="10.0" />-->
+<!--         </VBox.margin>-->
+<!--        </Label>-->
+        
+        <TitledPane fx:id="titleOrder" animated="false" prefHeight="217.0" prefWidth="877.0" text="ĐƠN HÀNG">
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <TableView fx:id="tableOrders" prefHeight="200.0" prefWidth="898.0">
+                <columns>
+                    <TableColumn fx:id="columnOrderCode" prefWidth="180.0" text="Đơn hàng" />
+                    <TableColumn fx:id="columnDetails" prefWidth="180.0" text="Chi tiết" />
+                    <TableColumn fx:id="columnSite" prefWidth="180.0" text="Tên Site" />
+                    <TableColumn fx:id="columnDeliveryDate" prefWidth="180.0" text="Ngày vận chuyển" />
+                    <TableColumn fx:id="columnStatus" prefWidth="180.0" text="Tình trạng" />
+                </columns>
+            </TableView>
+        </TitledPane>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,35 @@
+.hover-button:hover {
+    -fx-background-color: #63C1F3; /* Màu nền khi hover */
+    -fx-font-weight: bold; /* In đậm chữ khi hover (tuỳ chọn) */
+    -fx-border-color: transparent; /* Loại bỏ viền khi hover (tuỳ chọn) */
+    -fx-cursor: hand; /* Thay đổi kiểu con trỏ chuột khi hover (tuỳ chọn) */
+}
+
+.text-field {
+    -fx-border-width: 1px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #66cdf6; /* Màu nền cho tiêu đề cột */
+    -fx-text-fill: #000000; /* Màu chữ cho tiêu đề cột */
+}
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
+.button {
+    background-color: white; /* Màu nền trắng */
+    border: 1px solid #ccc; /* Đường viền nhẹ */
+    border-radius: 5px; /* Bo tròn các góc */
+    color: #333; /* Màu chữ */
+    font-size: 15px; /* Kích thước chữ */
+    padding: 10px 15px; /* Khoảng cách bên trong */
+    cursor: pointer; /* Con trỏ chuột khi hover */
+    transition: background-color 0.3s, border-color 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.button:hover {
+    background-color: #f0f0f0; /* Màu nền khi hover */
+    border-color: #aaa; /* Đổi màu đường viền khi hover */
+}

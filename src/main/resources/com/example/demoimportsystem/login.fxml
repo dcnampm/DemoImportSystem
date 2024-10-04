@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #63C1F3;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demoimportsystem.controllers.LoginController">
+   <ImageView fitHeight="400.0" fitWidth="300.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="300.0">
+      <Image url="@../../../images/bg.png" />
+   </ImageView>
+   <Pane layoutX="32.0" layoutY="50.0" prefHeight="310.0" prefWidth="233.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 10;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="40.0">
+      <VBox layoutY="107.0" prefHeight="107.0" prefWidth="232.0">
+         <Label prefHeight="15.0" prefWidth="131.0" text="  * Username" textAlignment="CENTER">
+            <font>
+               <Font size="11.0" />
+            </font>
+         </Label>
+         <TextField fx:id="usernameField" prefHeight="0.0" prefWidth="6.0" promptText="    Username" style="-fx-background-color: F0EDFF; -fx-background-radius: 10; -fx-border-width: 1; -fx-border-color: black; -fx-border-radius: 10;">
+            <font>
+               <Font size="10.0" />
+            </font>
+            <VBox.margin>
+               <Insets left="15.0" right="15.0" top="4.0" />
+            </VBox.margin>
+         </TextField>
+         <Label layoutX="10.0" layoutY="10.0" prefHeight="15.0" prefWidth="131.0" text="  * Mật khẩu" textAlignment="CENTER">
+            <font>
+               <Font size="11.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </Label>
+         <PasswordField fx:id="passwordField" layoutX="20.0" layoutY="30.0" prefHeight="0.0" promptText="    Password" style="-fx-background-color: F0EDFF; -fx-background-radius: 10; -fx-border-width: 1; -fx-border-color: black; -fx-border-radius: 10;">
+            <font>
+               <Font size="10.0" />
+            </font>
+            <VBox.margin>
+               <Insets left="15.0" right="15.0" top="4.0" />
+            </VBox.margin>
+         </PasswordField>
+      </VBox>
+      <Text fill="#00a1ff" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HỆ THỐNG" textAlignment="CENTER" wrappingWidth="232.0">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="64.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ĐĂNG NHẬP" textAlignment="CENTER" wrappingWidth="104.13671875">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#00a1ff" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" ĐẶT HÀNG NHẬP KHẨU" textAlignment="CENTER" wrappingWidth="232.0">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Text>
+      <Button fx:id="loginButton" layoutX="152.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="29.0" prefWidth="66.0" style="-fx-background-color: #176ADE;" text="Đăng nhập" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="6.0" layoutY="211.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF; -fx-underline: true;" text="Quên mật khẩu" textFill="#176ade">
+         <font>
+            <Font name="System Bold Italic" size="10.0" />
+         </font>
+      </Button>
+      <Label fx:id="messageLabel" layoutX="26.0" layoutY="259.0" prefHeight="45.0" prefWidth="180.0" textAlignment="CENTER" textFill="red" wrapText="true" />
+   </Pane>
+</AnchorPane>
