@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="import_system@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.48">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.53">
     <root id="1">
       <DefaultCasing>mixed/mixed</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1085,26 +1085,26 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </table>
     <column id="313" parent="307" name="id">
       <AutoIncrement>16</AutoIncrement>
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="314" parent="307" name="merchandise_code">
-      <DasType>varchar(50)|0s</DasType>
       <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
     </column>
     <column id="315" parent="307" name="merchandise_name">
-      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
     <column id="316" parent="307" name="type">
-      <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
     <column id="317" parent="307" name="unit">
-      <DasType>varchar(50)|0s</DasType>
       <Position>5</Position>
+      <StoredType>varchar(50)|0s</StoredType>
     </column>
     <index id="318" parent="307" name="PRIMARY">
       <ColNames>id</ColNames>
@@ -1118,30 +1118,30 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </key>
     <column id="320" parent="308" name="id">
       <AutoIncrement>7</AutoIncrement>
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="321" parent="308" name="order_list_id">
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="322" parent="308" name="order_code">
-      <DasType>varchar(50)|0s</DasType>
       <Position>3</Position>
+      <StoredType>varchar(50)|0s</StoredType>
     </column>
     <column id="323" parent="308" name="site">
-      <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
     <column id="324" parent="308" name="delivery_date">
-      <DasType>date|0s</DasType>
       <Position>5</Position>
+      <StoredType>date|0s</StoredType>
     </column>
     <column id="325" parent="308" name="status">
-      <DasType>enum(&apos;Đã tạo&apos;, &apos;Đang vận chuyển&apos;, &apos;Đã giao&apos;, &apos;Đã hủy&apos;)|0e</DasType>
       <Position>6</Position>
+      <StoredType>enum(&apos;Đã tạo&apos;, &apos;Đang vận chuyển&apos;, &apos;Đã giao&apos;, &apos;Đã hủy&apos;)|0e</StoredType>
     </column>
     <foreign-key id="326" parent="308" name="order_ibfk_1">
       <ColNames>order_list_id</ColNames>
@@ -1164,26 +1164,26 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </key>
     <column id="330" parent="309" name="id">
       <AutoIncrement>6</AutoIncrement>
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="331" parent="309" name="list_code">
-      <DasType>varchar(50)|0s</DasType>
       <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
     </column>
     <column id="332" parent="309" name="created_by">
-      <DasType>bigint|0s</DasType>
       <Position>3</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="333" parent="309" name="created_date">
-      <DasType>date|0s</DasType>
       <Position>4</Position>
+      <StoredType>date|0s</StoredType>
     </column>
     <column id="334" parent="309" name="status">
-      <DasType>enum(&apos;Đã gửi&apos;, &apos;Đã hủy&apos;, &apos;Đang xử lý&apos;, &apos;Đã hoàn thành&apos;)|0e</DasType>
       <DefaultExpression>&apos;Đã gửi&apos;</DefaultExpression>
       <Position>5</Position>
+      <StoredType>enum(&apos;Đã gửi&apos;, &apos;Đã hủy&apos;, &apos;Đang xử lý&apos;, &apos;Đã hoàn thành&apos;)|0e</StoredType>
     </column>
     <foreign-key id="335" parent="309" name="order_list_ibfk_1">
       <ColNames>created_by</ColNames>
@@ -1206,25 +1206,25 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </key>
     <column id="339" parent="310" name="id">
       <AutoIncrement>14</AutoIncrement>
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="340" parent="310" name="order_list_id">
-      <DasType>bigint|0s</DasType>
       <Position>2</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="341" parent="310" name="merchandise_id">
-      <DasType>bigint|0s</DasType>
       <Position>3</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="342" parent="310" name="quantity">
-      <DasType>int|0s</DasType>
       <Position>4</Position>
+      <StoredType>int|0s</StoredType>
     </column>
     <column id="343" parent="310" name="desired_date">
-      <DasType>date|0s</DasType>
       <Position>5</Position>
+      <StoredType>date|0s</StoredType>
     </column>
     <foreign-key id="344" parent="310" name="order_list_details_ibfk_1">
       <ColNames>order_list_id</ColNames>
@@ -1255,18 +1255,18 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="350" parent="311" name="order_id">
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="351" parent="311" name="merchandise_id">
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="352" parent="311" name="quantity">
-      <DasType>int|0s</DasType>
       <Position>3</Position>
+      <StoredType>int|0s</StoredType>
     </column>
     <foreign-key id="353" parent="311" name="order_merchandise_ibfk_1">
       <ColNames>order_id</ColNames>
@@ -1297,19 +1297,19 @@ merchandise_id</ColNames>
     </key>
     <column id="358" parent="312" name="id">
       <AutoIncrement>3</AutoIncrement>
-      <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <StoredType>bigint|0s</StoredType>
     </column>
     <column id="359" parent="312" name="username">
-      <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
     </column>
     <column id="360" parent="312" name="password">
-      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
+      <StoredType>varchar(255)|0s</StoredType>
     </column>
     <index id="361" parent="312" name="PRIMARY">
       <ColNames>id</ColNames>

@@ -14,7 +14,7 @@ public class OrderDAO {
     public List<Order> getOrdersForOrderList(Long orderListId) {
         List<Order> orders = new ArrayList<>();
         String query = "SELECT o.order_code, o.site, o.delivery_date, o.status, "
-                + "(SELECT GROUP_CONCAT(CONCAT(m.merchandise_name, ' x', om.quantity) SEPARATOR ', ') "
+                + "(SELECT GROUP_CONCAT(CONCAT(om.quantity, ' x ', m.merchandise_name) SEPARATOR '\n') "
                 + "FROM order_merchandise om "
                 + "JOIN merchandise m ON om.merchandise_id = m.id "
                 + "WHERE om.order_id = o.id) AS order_details "

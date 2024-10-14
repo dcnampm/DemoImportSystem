@@ -38,6 +38,7 @@ public class Order {
 
 
     // Enum cho trạng thái đơn hàng
+    @Getter
     public enum OrderStatus {
         CREATED("Đã tạo"),
         DELIVERING("Đang vận chuyển"),
@@ -48,10 +49,6 @@ public class Order {
 
         OrderStatus(String vietnamese) {
             this.vietnamese = vietnamese;
-        }
-
-        public String getVietnamese() {
-            return vietnamese;
         }
 
         public static OrderStatus fromVietnamese(String vietnamese) {

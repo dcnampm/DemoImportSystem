@@ -186,7 +186,6 @@ public class OrderListController {
 
             // Lấy controller của trang chi tiết và truyền đối tượng OrderList
             OrderListDetailsController detailsController = fxmlLoader.getController();
-//            detailsController.setOrderListId(orderListId);
             detailsController.setOrderList(orderList);
             detailsController.initialize();
 
@@ -198,5 +197,4 @@ public class OrderListController {
             e.printStackTrace();
         }
     }
-
 }
