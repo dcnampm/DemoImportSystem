@@ -2,6 +2,7 @@ package com.example.demoimportsystem.controllers;
 
 import com.example.demoimportsystem.DemoApplication;
 import com.example.demoimportsystem.daos.UserDAO;
+import com.example.demoimportsystem.daos.impl.UserDAOImpl;
 import com.example.demoimportsystem.models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +33,18 @@ public class LoginController {
     private final UserDAO userDAO;
 
     public LoginController() {
-        userDAO = new UserDAO();
+        this.userDAO = new UserDAOImpl();
+    }
+    public LoginController(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    public User authenticate(String username, String password) {
+        User user = userDAO.findUserByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
 
     @FXML
@@ -45,9 +57,10 @@ public class LoginController {
             return;
         }
 
-        User user = userDAO.authenticate(username, password);
+        User user = authenticate(username, password);
+
         if (user != null) {
-            messageLabel.setText("Đăng nhập thành công!"); // Thông báo thành công
+            messageLabel.setText("Đăng nhập thành công!");
 
             changeToHomepage();
         } else {
@@ -55,7 +68,8 @@ public class LoginController {
         }
     }
 
-    //Chuyển giao diện tới trang chủ
+
+//    //Chuyển giao diện tới trang chủ
     public void changeToHomepage() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DemoApplication.class.getResource("home.fxml"));
         Parent root = fxmlLoader.load();

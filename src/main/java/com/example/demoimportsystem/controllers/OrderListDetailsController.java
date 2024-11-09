@@ -2,7 +2,8 @@ package com.example.demoimportsystem.controllers;
 
 import com.example.demoimportsystem.daos.MerchandiseDAO;
 import com.example.demoimportsystem.daos.OrderDAO;
-import com.example.demoimportsystem.daos.OrderListDAO;
+import com.example.demoimportsystem.daos.impl.MerchandiseDAOImpl;
+import com.example.demoimportsystem.daos.impl.OrderDAOImpl;
 import com.example.demoimportsystem.models.Order;
 import com.example.demoimportsystem.models.OrderList;
 import com.example.demoimportsystem.models.OrderListDetails;
@@ -14,22 +15,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-import java.awt.*;
 import java.util.List;
 
-import static javafx.scene.paint.Color.RED;
-
-@AllArgsConstructor
 public class OrderListDetailsController {
 
     @FXML
-    private TableView<OrderListDetails> tableMerchandise;
+    TableView<OrderListDetails> tableMerchandise;
 
     @FXML
     private TableColumn<OrderListDetails, String> columnMerchandiseCode;
@@ -47,7 +40,7 @@ public class OrderListDetailsController {
     private TableColumn<OrderListDetails, String> columnDate;
 
     @FXML
-    private TableView<Order> tableOrders;
+    TableView<Order> tableOrders;
 
     @FXML
     private TableColumn<Order, String> columnOrderCode;
@@ -65,20 +58,25 @@ public class OrderListDetailsController {
     private TableColumn<Order, String> columnStatus;
 
     @FXML
-    private TitledPane titleOrder;
+    TitledPane titleOrder;
 
     @FXML
-    private Label messageLabel;
+    Label messageLabel;
 
-    private MerchandiseDAO merchandiseDAO;
-    private OrderDAO orderDAO;
+    private final MerchandiseDAO merchandiseDAO;
+    private final OrderDAO orderDAO;
+
     @Setter
     private OrderList orderList;
     private long orderListId;
 
     public OrderListDetailsController() {
-        orderDAO = new OrderDAO();
-        merchandiseDAO = new MerchandiseDAO();
+        this.merchandiseDAO = new MerchandiseDAOImpl();
+        this.orderDAO = new OrderDAOImpl();
+    }
+    public OrderListDetailsController(MerchandiseDAO merchandiseDAO, OrderDAO orderDAO) {
+        this.merchandiseDAO = merchandiseDAO;
+        this.orderDAO = orderDAO;
     }
 
     // Observable lists for table data
@@ -88,39 +86,30 @@ public class OrderListDetailsController {
     @FXML
     public void initialize() {
         Platform.runLater(() -> {
-            if (orderList != null) {
-                // Configure tableMerchandise columns
-                columnMerchandiseCode.setCellValueFactory(new PropertyValueFactory<>("merchandiseCode"));
-                columnMerchandiseName.setCellValueFactory(new PropertyValueFactory<>("merchandiseName"));
-                columnQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-                columnUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
-                columnDate.setCellValueFactory(new PropertyValueFactory<>("desiredDate"));
+            // Configure tableMerchandise columns
+            columnMerchandiseCode.setCellValueFactory(new PropertyValueFactory<>("merchandiseCode"));
+            columnMerchandiseName.setCellValueFactory(new PropertyValueFactory<>("merchandiseName"));
+            columnQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+            columnUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+            columnDate.setCellValueFactory(new PropertyValueFactory<>("desiredDate"));
 
-                // Configure tableOrders columns
-                columnOrderCode.setCellValueFactory(new PropertyValueFactory<>("orderCode"));
-                columnSite.setCellValueFactory(new PropertyValueFactory<>("site"));
-                columnDeliveryDate.setCellValueFactory(new PropertyValueFactory<>("deliveryDate"));
-                columnStatus.setCellValueFactory(cellData ->
-                        new SimpleStringProperty(cellData.getValue().getStatus().getVietnamese()));
-                columnDetails.setCellValueFactory(new PropertyValueFactory<>("orderDetails"));
+            // Configure tableOrders columns
+            columnOrderCode.setCellValueFactory(new PropertyValueFactory<>("orderCode"));
+            columnSite.setCellValueFactory(new PropertyValueFactory<>("site"));
+            columnDeliveryDate.setCellValueFactory(new PropertyValueFactory<>("deliveryDate"));
+            columnStatus.setCellValueFactory(cellData ->
+                    new SimpleStringProperty(cellData.getValue().getStatus().getVietnamese()));
+            columnDetails.setCellValueFactory(new PropertyValueFactory<>("orderDetails"));
 
-                orderListId = orderList.getId();
-                loadMerchandiseDetails();
-                handleOrderListStatus();
-            } else {
-                // Tạo một Alert dialog để báo lỗi
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Lỗi tải dữ liệu");
-                alert.setHeaderText("Không thể tải thông tin chi tiết dsmhcđ");
-                alert.setContentText("Lỗi khi lấy dữ liệu. Vui lòng thử lại sau");
+            orderListId = orderList.getId();
+            //load ds mặt hàng
+            loadMerchandiseDetails();
 
-                // Hiển thị popup và chờ người dùng đóng nó
-                alert.showAndWait();
-            }
+            handleOrderListStatus();
         });
     }
 
-    private void handleOrderListStatus() {
+    void handleOrderListStatus() {
         switch (orderList.getStatus()) {
             case SENT:
                 titleOrder.setVisible(false);
@@ -134,18 +123,28 @@ public class OrderListDetailsController {
                 break;
             default:
                 titleOrder.setVisible(true);
-                loadOrderDetails();
+                messageLabel.setVisible(false);
+
+                // Thêm cờ để chỉ nạp dữ liệu một lần khi mở rộng titleOrder
+                final boolean[] isDataLoaded = {false};
+
+                titleOrder.expandedProperty().addListener((observable, oldValue, newValue) -> {
+                    if (newValue && !isDataLoaded[0]) {
+                        loadOrderDetails();
+                        isDataLoaded[0] = true;
+                    }
+                });
                 break;
         }
     }
 
-    private void loadMerchandiseDetails() {
+    void loadMerchandiseDetails() {
         List<OrderListDetails> merchandiseListFromDB = merchandiseDAO.getMerchandiseDetailsForOrderList(orderListId);
         merchandiseDetails = FXCollections.observableArrayList(merchandiseListFromDB);
         tableMerchandise.setItems(merchandiseDetails);
     }
 
-    private void loadOrderDetails() {
+    void loadOrderDetails() {
         List<Order> orderListFromDB = orderDAO.getOrdersForOrderList(orderListId);
         orderDetails = FXCollections.observableArrayList(orderListFromDB);
         tableOrders.setItems(orderDetails);

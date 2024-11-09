@@ -4,167 +4,152 @@ import com.example.demoimportsystem.daos.MerchandiseDAO;
 import com.example.demoimportsystem.daos.OrderDAO;
 import com.example.demoimportsystem.models.Order;
 import com.example.demoimportsystem.models.OrderList;
+import com.example.demoimportsystem.models.OrderListDetails;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.Extension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.Answer;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
 
+import static com.example.demoimportsystem.models.Order.OrderStatus.CREATED;
+import static com.example.demoimportsystem.models.Order.OrderStatus.DELIVERING;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class OrderListDetailsControllerTest {
-
     @Mock
-    private MerchandiseDAO merchandiseDAO;
+    private MerchandiseDAO merchandiseDAOMock;
     @Mock
-    private OrderDAO orderDAO;
+    private OrderDAO orderDAOMock;
+    @Mock
+    private OrderList orderListMock;
     @InjectMocks
     private OrderListDetailsController controller;
 
-    @BeforeEach
-    public void setUp() throws Exception {
+    @BeforeAll
+    public static void initToolkit() throws InterruptedException {
         // Initialize JavaFX toolkit
         CountDownLatch latch = new CountDownLatch(1);
-        Platform.startup(() -> {
-            latch.countDown();
-        });
+        Platform.startup(() -> latch.countDown());
         latch.await();
+    }
 
+    @BeforeEach
+    public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
 
-//        // Inject DAO mocks into the controller using reflection
-        Field merchandiseDAOField = controller.getClass().getDeclaredField("merchandiseDAO");
-        merchandiseDAOField.setAccessible(true);
-        merchandiseDAOField.set(controller, merchandiseDAO);
-
-        Field orderDAOField = controller.getClass().getDeclaredField("orderDAO");
-        orderDAOField.setAccessible(true);
-        orderDAOField.set(controller, orderDAO);
-
-        // Sử dụng Reflection để khởi tạo titleOrder
-        Field titleOrderField = controller.getClass().getDeclaredField("titleOrder");
-        titleOrderField.setAccessible(true);
-        titleOrderField.set(controller, new TitledPane());
-
-        // Sử dụng Reflection để khởi tạo messageLabel
-        Field messageLabelField = controller.getClass().getDeclaredField("messageLabel");
-        messageLabelField.setAccessible(true);
-        messageLabelField.set(controller, new Label());
+        controller = new OrderListDetailsController(merchandiseDAOMock, orderDAOMock);
+        controller.setOrderList(orderListMock);
+        controller.titleOrder = new TitledPane();
+        controller.messageLabel = new Label();
+        controller.tableMerchandise = new TableView<>();
+        controller.tableOrders = new TableView<>();
     }
 
-    // Hộp đen: Kiểm tra nếu orderList là null thì hiển thị cảnh báo
     @Test
-    public void testInitializeWithNullOrderList() throws Exception {
-        controller.setOrderList(null);
-        controller.initialize();
+    public void testHandleOrderListStatus_Sent() {
+        // Giả lập trạng thái SENT cho orderList
+        when(orderListMock.getStatus()).thenReturn(OrderList.Status.SENT);
 
-        Field orderListField = controller.getClass().getDeclaredField("orderList");
-        orderListField.setAccessible(true);
-        // Lấy giá trị của trường orderList
-        OrderList orderListValue = (OrderList) orderListField.get(controller);
+        controller.handleOrderListStatus();
 
-        assertNull(orderListValue);
+        assertFalse(controller.titleOrder.isVisible());
+        assertTrue(controller.messageLabel.isVisible());
+        assertEquals("Đơn hàng chưa được tạo.", controller.messageLabel.getText());
     }
 
-//    // Hộp trắng: Kiểm thử tất cả các trạng thái trong handleOrderListStatus()
-//    @Test
-//    public void testHandleOrderListStatus_Sent() throws Exception {
-//        // Set orderList with status SENT
-//        OrderList orderList = new OrderList();
-//        orderList.setStatus(OrderList.Status.SENT);
-//        injectPrivateField("orderList", orderList);
-//
-//        controller.handleOrderListStatus();
-//
-//        assertFalse(controller.titleOrder.isVisible());
-//        assertTrue(controller.messageLabel.isVisible());
-//        assertEquals("Đơn hàng chưa được tạo.", controller.messageLabel.getText());
-//    }
-//
-//    @Test
-//    public void testHandleOrderListStatus_Canceled() throws Exception {
-//        // Set orderList with status CANCELED
-//        OrderList orderList = new OrderList();
-//        orderList.setStatus(OrderList.Status.CANCELED);
-//        injectPrivateField("orderList", orderList);
-//
-//        controller.handleOrderListStatus();
-//
-//        assertFalse(controller.titleOrder.isVisible());
-//        assertTrue(controller.messageLabel.isVisible());
-//        assertEquals("Danh sách mặt hàng cần đặt đã bị hủy.", controller.messageLabel.getText());
-//    }
-//
-//    @Test
-//    public void testHandleOrderListStatus_Default() throws Exception {
-//        // Set orderList with status DEFAULT (other than SENT and CANCELED)
-//        OrderList orderList = new OrderList();
-//        orderList.setStatus(OrderStatus.CREATED);  // Assuming CREATED is a valid status
-//        injectPrivateField("orderList", orderList);
-//
-//        controller.handleOrderListStatus();
-//
-//        assertTrue(controller.titleOrder.isVisible());
-//        assertFalse(controller.messageLabel.isVisible());
-//    }
-//
+    @Test
+    public void testHandleOrderListStatus_Canceled() throws Exception {
+        // Giả lập trạng thái SENT cho orderList
+        when(orderListMock.getStatus()).thenReturn(OrderList.Status.CANCELED);
+
+        controller.handleOrderListStatus();
+
+        assertFalse(controller.titleOrder.isVisible());
+        assertTrue(controller.messageLabel.isVisible());
+        assertEquals("Danh sách mặt hàng cần đặt đã bị hủy.", controller.messageLabel.getText());
+    }
+
+    @Test
+    public void testHandleOrderListStatus_Default() {
+        controller = Mockito.spy(new OrderListDetailsController(merchandiseDAOMock, orderDAOMock));
+
+        controller.setOrderList(orderListMock);
+        controller.titleOrder = new TitledPane();
+        controller.messageLabel = new Label();
+        controller.tableOrders = new TableView<>();
+
+
+        // Giả lập trạng thái PROCESSING/COMPLETED cho orderList
+        when(orderListMock.getStatus()).thenReturn(OrderList.Status.PROCESSING);
+
+        controller.handleOrderListStatus();
+
+        assertTrue(controller.titleOrder.isVisible());
+        assertFalse(controller.messageLabel.isVisible());
+
+        // Thiết lập một listener để phát hiện khi titleOrder được mở rộng
+        BooleanProperty expandedProperty = new SimpleBooleanProperty(false);
+        controller.titleOrder.expandedProperty().bind(expandedProperty);
+
+        expandedProperty.set(true);
+
+        verify(controller, times(1)).loadOrderDetails();
+    }
+
 //    // Hộp trắng: Kiểm thử việc load dữ liệu từ DB
-//    @Test
-//    public void testLoadMerchandiseDetails() throws Exception {
-//        // Set orderListId
-//        injectPrivateField("orderListId", 1L);
-//
-//        // Mock the data from merchandiseDAO
-//        List<OrderListDetails> mockMerchandiseList = Arrays.asList(
-//                new OrderListDetails("M001", "Product A", 10, "pcs", "2024-10-15"),
-//                new OrderListDetails("M002", "Product B", 5, "kg", "2024-10-16")
-//        );
-//        Mockito.when(merchandiseDAO.getMerchandiseDetailsForOrderList(1L)).thenReturn(mockMerchandiseList);
-//
-//        controller.loadMerchandiseDetails();
-//
-//        assertNotNull(controller.tableMerchandise.getItems());
-//        assertEquals(2, controller.tableMerchandise.getItems().size());
-//    }
-//
-//    @Test
-//    public void testLoadOrderDetails() throws Exception {
-//        // Set orderListId
-//        injectPrivateField("orderListId", 1L);
-//
-//        // Mock the data from orderDAO
-//        List<Order> mockOrderList = Arrays.asList(
-//                new Order("O001", "Details A", "Site A", "2024-10-20", OrderStatus.CREATED),
-//                new Order("O002", "Details B", "Site B", "2024-10-21", OrderStatus.SENT)
-//        );
-//        Mockito.when(orderDAO.getOrdersForOrderList(1L)).thenReturn(mockOrderList);
-//
-//        controller.loadOrderDetails();
-//
-//        assertNotNull(controller.tableOrders.getItems());
-//        assertEquals(2, controller.tableOrders.getItems().size());
-//    }
-//
-//    // Helper method to inject private fields using reflection
-//    private void injectPrivateField(String fieldName, Object value) throws Exception {
-//        Field field = controller.getClass().getDeclaredField(fieldName);
-//        field.setAccessible(true);
-//        field.set(controller, value);
-//    }
+    @Test
+    public void testLoadMerchandiseDetails() {
+        // Giả lập dữ liệu từ merchandiseDAO
+        List<OrderListDetails> mockMerchandiseList = Arrays.asList(
+                new OrderListDetails(1L, 1L, 1L, 10, LocalDate.parse("2024-10-15")),
+                new OrderListDetails(2L, 1L,2L,5, LocalDate.parse("2024-10-15"))
+        );
+
+        when(merchandiseDAOMock.getMerchandiseDetailsForOrderList(anyLong())).thenReturn(mockMerchandiseList);
+
+
+        // Gọi phương thức loadMerchandiseDetails
+        controller.loadMerchandiseDetails();
+
+        // Kiểm tra rằng dữ liệu đã được nạp vào TableView
+        ObservableList<OrderListDetails> merchandiseDetails = controller.tableMerchandise.getItems();
+        assertEquals(2, merchandiseDetails.size());
+        assertEquals(1L, merchandiseDetails.get(0).getMerchandiseId());
+        assertEquals(2L, merchandiseDetails.get(1).getMerchandiseId());
+    }
+
+    @Test
+    public void testLoadOrderDetails() {
+        List<Order> mockOrders = Arrays.asList(
+                new Order(1L, 1L, "1a", "Site A", LocalDate.parse("2024-10-02"), CREATED, "5x sp1"),
+                new Order(2L, 1L, "1b", "Site B", LocalDate.parse("2024-10-02"), DELIVERING, "10x sp2")
+        );
+
+        when(orderDAOMock.getOrdersForOrderList(anyLong())).thenReturn(mockOrders);
+
+        // Gọi phương thức loadOrderDetails
+        controller.loadOrderDetails();
+
+        // Kiểm tra rằng dữ liệu đã được nạp vào TableView
+        ObservableList<Order> orderDetails = controller.tableOrders.getItems();
+        assertEquals(2, orderDetails.size());
+        assertEquals("5x sp1", orderDetails.get(0).getOrderDetails());
+        assertEquals("10x sp2", orderDetails.get(1).getOrderDetails());
+    }
 }

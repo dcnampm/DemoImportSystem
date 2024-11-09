@@ -5,29 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c177fee-09b5-4a17-a81f-b5c09b020bd6" name="Changes" comment="update login, home and view order list">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/demoimportsystem/controllers/OrderListDetailsControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/impl/MerchandiseDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/impl/OrderDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/impl/OrderListDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/impl/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/cebae15b-877e-4814-ab81-f3dd2ceaa1f7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cebae15b-877e-4814-ab81-f3dd2ceaa1f7.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/OrderListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/OrderListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/OrderListDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/controllers/OrderListDetailsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/MerchandiseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/MerchandiseDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/OrderListDetailsDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/OrderListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/OrderListDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/daos/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/models/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/utils/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demoimportsystem/utils/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demoimportsystem/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demoimportsystem/home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demoimportsystem/order-list-details.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demoimportsystem/order-list-details.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/demoimportsystem/controllers/OrderListDetailsControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/demoimportsystem/controllers/OrderListDetailsControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/htmlReport" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="FxmlFile" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -46,6 +59,9 @@
     &quot;accountId&quot;: &quot;61c31932-8ebb-4787-a87c-816a1c70cd0f&quot;
   }
 }</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -79,7 +95,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.23793103",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "inlay.hints",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -97,11 +113,14 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.demoimportsystem.daos" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.example.demoimportsystem.controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.OrderListDetailsControllerTest.testInitializeWithNullOrderList">
+  <component name="RunManager" selected="Application.DemoApplication">
     <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.demoimportsystem.DemoApplication" />
       <module name="DemoImportSystem" />
@@ -130,7 +149,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderListDetailsControllerTest.testInitializeWithNullOrderList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderListDetailsControllerTest.testHandleOrderListStatus_Default" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DemoImportSystem" />
       <extension name="coverage">
         <pattern>
@@ -140,13 +159,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.demoimportsystem.controllers" />
       <option name="MAIN_CLASS_NAME" value="com.example.demoimportsystem.controllers.OrderListDetailsControllerTest" />
-      <option name="METHOD_NAME" value="testInitializeWithNullOrderList" />
+      <option name="METHOD_NAME" value="testHandleOrderListStatus_Default" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderListDetailsControllerTest.testInitialize_OrderListNotNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderListDetailsControllerTest.testLoadMerchandiseDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DemoImportSystem" />
       <extension name="coverage">
         <pattern>
@@ -156,13 +175,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.demoimportsystem.controllers" />
       <option name="MAIN_CLASS_NAME" value="com.example.demoimportsystem.controllers.OrderListDetailsControllerTest" />
-      <option name="METHOD_NAME" value="testInitialize_OrderListNotNull" />
+      <option name="METHOD_NAME" value="testLoadMerchandiseDetails" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderListDetailsControllerTest.testInitialize_SentStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderListDetailsControllerTest.testLoadOrderDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DemoImportSystem" />
       <extension name="coverage">
         <pattern>
@@ -172,7 +191,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.demoimportsystem.controllers" />
       <option name="MAIN_CLASS_NAME" value="com.example.demoimportsystem.controllers.OrderListDetailsControllerTest" />
-      <option name="METHOD_NAME" value="testInitialize_SentStatus" />
+      <option name="METHOD_NAME" value="testLoadOrderDetails" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -180,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.OrderListDetailsControllerTest.testInitializeWithNullOrderList" />
-        <item itemvalue="JUnit.OrderListDetailsControllerTest" />
-        <item itemvalue="JUnit.OrderListDetailsControllerTest.testInitialize_OrderListNotNull" />
         <item itemvalue="Application.DemoApplication" />
-        <item itemvalue="JUnit.OrderListDetailsControllerTest.testInitialize_SentStatus" />
+        <item itemvalue="JUnit.OrderListDetailsControllerTest" />
+        <item itemvalue="JUnit.OrderListDetailsControllerTest.testLoadMerchandiseDetails" />
+        <item itemvalue="JUnit.OrderListDetailsControllerTest.testHandleOrderListStatus_Default" />
+        <item itemvalue="JUnit.OrderListDetailsControllerTest.testLoadOrderDetails" />
       </list>
     </recent_temporary>
   </component>
@@ -216,6 +235,11 @@
       <workItem from="1728870011330" duration="6418000" />
       <workItem from="1728876483382" duration="658000" />
       <workItem from="1728877343465" duration="7600000" />
+      <workItem from="1728915760303" duration="16950000" />
+      <workItem from="1729739829312" duration="608000" />
+      <workItem from="1729837108247" duration="2008000" />
+      <workItem from="1730346244567" duration="3026000" />
+      <workItem from="1730981499884" duration="30277000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -252,5 +276,10 @@
     <MESSAGE value="add detail list view" />
     <MESSAGE value="update login, home and view order list" />
     <option name="LAST_COMMIT_MESSAGE" value="update login, home and view order list" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DemoImportSystem$OrderListDetailsControllerTest.ic" NAME="OrderListDetailsControllerTest Coverage Results" MODIFIED="1731087875474" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.demoimportsystem.controllers.*</FILTER>
+    </SUITE>
   </component>
 </project>

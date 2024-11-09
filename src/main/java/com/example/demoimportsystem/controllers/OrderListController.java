@@ -2,6 +2,7 @@ package com.example.demoimportsystem.controllers;
 
 import com.example.demoimportsystem.DemoApplication;
 import com.example.demoimportsystem.daos.OrderListDAO;
+import com.example.demoimportsystem.daos.impl.OrderListDAOImpl;
 import com.example.demoimportsystem.models.OrderList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -15,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import javax.crypto.spec.PSource;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -61,9 +61,16 @@ public class OrderListController {
     private ObservableList<OrderList> orderLists;
 
     // DAO để tương tác với cơ sở dữ liệu
-    private OrderListDAO orderListDAO = new OrderListDAO();
+    private final OrderListDAO orderListDAO;
 
     private Long selectedOrderListId;
+
+    public OrderListController() {
+        this.orderListDAO = new OrderListDAOImpl();
+    }
+    public OrderListController(OrderListDAO orderListDAO) {
+        this.orderListDAO = orderListDAO;
+    }
 
     @FXML
     public void initialize() {
@@ -71,7 +78,7 @@ public class OrderListController {
         columnOrdinalNumber.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnListCode.setCellValueFactory(new PropertyValueFactory<>("listCode"));
 
-        // Cột này hiển thị username từ đối tượng User
+        // Cột này hiển thị ng tạo
         columnCreatedBy.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCreatedBy().getUsername()));
 
